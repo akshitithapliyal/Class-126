@@ -1,10 +1,10 @@
-song="";
-scoreRightwrist=0;
-scoreLeftwrist=0;
-rightwrist_X=0;
-rightwrist_Y=0;
-leftwrist_X=0;
-leftwrist_Y=0;
+song = "";
+scoreRightwrist = 0;
+scoreLeftwrist = 0;
+rightwrist_X = 0;
+rightwrist_Y = 0;
+leftwrist_X = 0;
+leftwrist_Y = 0;
 
 function preload(){
     song=loadSound("music.mp3");
@@ -21,6 +21,22 @@ function setup(){
 
 function modelLoaded(){
     console.log("poseNet is intialized and starting");
+}
+
+function gotposes(results){
+    console.log(results);
+    if(results.length > 0){
+        scoreRightwrist= results[0].pose.keypoints[10].score;
+       
+        scoreLeftwrist= results[0].pose.keypoints[9].score;
+        console.log("rightwristscore = "+scoreRightwrist+" leftwristscore" + scoreLeftwrist);
+        rightwrist_X= results[0].pose.rightwrist.x;
+        rightwrist_Y= results[0].pose.rightwrist.y;
+        leftwrist_X= results[0].pose.leftwrist.x;
+        leftwrist_Y= results[0].pose.leftwrist.y;
+        console.log("rightwristX = "+rightwrist_X+" rightwristY = "+rightwrist_Y);
+        console.log("leftwristX = "+leftwrist_X+" leftwristY = "+leftwrist_Y);
+    }
 }
 
 function draw(){
@@ -60,20 +76,5 @@ function draw(){
     function playy(){
     song.play();
     song.setVolume(1);
-    song.rate(3);
-}
-
-function gotposes(results){
-    if(results.length > 0){
-        scoreRightwrist= results[0].pose.keypoints[10].score;
-        scoreLeftwrist= results[0].pose.keypoints[9].score;
-        rightwrist_X= results[0].pose.rightwrist.x;
-        rightwrist_Y= results[0].pose.rightwrist.y;
-        leftwrist_X= results[0].pose.leftwrist.x;
-        leftwrist_Y= results[0].pose.leftwrist.y;
-        console.log("rightwristX = "+rightwrist_X+" rightwristY = "+rightwrist_Y);
-        console.log("leftwristX = "+leftwrist_X+" leftwristY = "+leftwrist_Y);
-        console.log("rightwristscore = "+scoreRightwrist+" leftwristscore" + scoreLeftwrist);
-        console.log(results);
-    }
+    song.rate(1);
 }
