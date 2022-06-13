@@ -30,12 +30,10 @@ function gotposes(results){
        
         scoreLeftwrist= results[0].pose.keypoints[9].score;
         console.log("rightwristscore = "+scoreRightwrist+" leftwristscore" + scoreLeftwrist);
-        rightwrist_X= results[0].pose.rightwrist.x;
         rightwrist_Y= results[0].pose.rightwrist.y;
-        leftwrist_X= results[0].pose.leftwrist.x;
         leftwrist_Y= results[0].pose.leftwrist.y;
-        console.log("rightwristX = "+rightwrist_X+" rightwristY = "+rightwrist_Y);
-        console.log("leftwristX = "+leftwrist_X+" leftwristY = "+leftwrist_Y);
+        console.log("rightwristY = "+rightwrist_Y);
+        console.log(" leftwristY = "+leftwrist_Y);
     }
 }
 
